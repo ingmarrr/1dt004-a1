@@ -124,6 +124,7 @@ procedure comm1 is
 		    loop
 				buffer.Can_Pop(Can_Pop);
 				exit when Can_Pop;
+				delay 0.1;
 			end loop;
 
 			loop
