@@ -11,7 +11,6 @@ use Ada.Text_IO;
 
 procedure comm1 is
     subtype Produced_Integer is Integer range 0..20;
-    -- type Storage is array(Positive range <>) of Produced_Integer;
     package Integer_Vectors is new Ada.Containers.Vectors
          (Index_Type   => Natural,
           Element_Type => Produced_Integer);
@@ -62,8 +61,8 @@ procedure comm1 is
             or
                 when Internal.Length > 0 =>
                     accept Pop(Value: out Produced_Integer) do
-                        Value := Internal.Last_Element;
-                        Internal.Delete_Last;
+                        Value := Internal.First_Element;
+                        Internal.Delete_First;
                     end Pop;
             or
                 accept Stop;
