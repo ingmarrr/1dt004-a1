@@ -1,3 +1,5 @@
+-- Cyclic scheduler
+
 with Ada.Calendar;
 with Ada.Text_IO;
 use Ada.Calendar;
@@ -33,17 +35,19 @@ procedure cyclic is
 		Put_Line(Duration'Image(Clock - Start_Time));
 	end f3;
 
-	begin
-        loop
-            delay until Next_F1;
-            f1;
-            f2;
-            delay until Next_F1 + 0.5;
-            Next_F1 := Next_F1 + Delta_F1;
+begin
+	Put_Line(Message);
+	
+	loop
+		delay until Next_F1;
+		f1;
+		f2;
+		delay until Next_F1 + 0.5;
+		Next_F1 := Next_F1 + Delta_F1;
 
-            if Clock >= Next_F3 then
-                f3;
-                Next_F3 := Next_F3 + Delta_F3;
-            end if;
-        end loop;
+		if Clock >= Next_F3 then
+			f3;
+			Next_F3 := Next_F3 + Delta_F3;
+		end if;
+	end loop;
 end cyclic;
